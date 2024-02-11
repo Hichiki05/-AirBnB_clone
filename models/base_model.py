@@ -21,6 +21,8 @@ class BaseModel:
         self.updated_at = datetime.today()
         if kwargs:
             for k, v in kwargs.items():
+                if k == '__class__':
+                    continue
                 if k in ("created_at", "updated_at"):
                     setattr(self, k, datetime.strptime(v, tform))
                 else:
